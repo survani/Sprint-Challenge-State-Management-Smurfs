@@ -16,7 +16,7 @@ The store is known as the single source of truth because it is what represent th
 1. What is the difference between Application state and Component state? 
 When would be a good time to use one over the other?
 
-Difference is where the state is located. Application State is stored globally, and Component State is stored locally in its component.
+Difference is where the state is located. Application State is stored globally, and Component State is stored locally in its component. It will all depend on how big your application gets.
 
 1. Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
 
