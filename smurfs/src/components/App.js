@@ -1,32 +1,38 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import "./App.css";
 import axios from "axios";
-// import { Route } from "react-router-dom";
 
 //Components
-import SmurfList from "../components/SmurfList";
+import SmurfList from "./SmurfList";
 
 //Context Imports
-import {SmurfContext} from "../contexts/SmurfContext";
+import SmurfContext from "../contexts/SmurfContext";
+import AddSmurf from "./AddSmurf";
 
 const App = () => {
-  const [smurf] = useState();
+  const [smurf, setSmurf] = useState();
 
-  axios
-  .get("http://localhost:3333/smurfs")
-  .then( res=>{
-    console.log("response for smurfs",res.data)
-  }
-  )
-  .catch(error => console.log(error))
+  //starts as undefined
+  console.log("smurf state: app.js", smurf);
+
+  useEffect(() => {
+    axios
+    .get("http://localhost:3333/smurfs")
+    .then( res=>{
+      //shows data correctly
+      console.log("response for smurfs",res.data)
+      setSmurf(res.data)
+    })
+    //error displaying correct when needed. 
+    .catch(error => console.log(error));
+  }, []);
+
 
     return (
       <div className="App">
-        <SmurfContext.Provider value={smurf}>
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        {/* <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div> */}
-        <div>Have fun!</div>
+        <SmurfContext.Provider value={{smurf, setSmurf}}>
+        <h1>Smurf Village</h1>
+        <AddSmurf/>
         <SmurfList />
         </SmurfContext.Provider>
       </div>
