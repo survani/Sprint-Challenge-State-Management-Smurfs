@@ -27,7 +27,7 @@ const AddSmurf = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <input
         type="text"
         name="name"
@@ -49,7 +49,7 @@ const AddSmurf = () => {
         value={addSmurf.height}
         onChange={handleChanges}
       />
-      <button>Add Smurf</button>
+      <button onClick={handleSubmit}>Add Smurf</button>
     </form>
   );
 };
